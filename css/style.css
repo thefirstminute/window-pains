@@ -1,0 +1,370 @@
+@charset "utf-8";
+/* {{{ * /
+colours:
+  gray:
+   light:  rgb(223, 223, 223);
+   light:  #DFDFDF;
+   med:    rgb(192, 192, 192);
+   med:    #C0C0C0;
+   dark:   rgb(128, 128, 128);
+   dark:   #808080;
+  
+  bg teal: rgb(0, 128, 128);
+  bg teal: #008080;
+  blue:    rgb(0, 0, 128);
+  blue:    #000080;
+/* }}} */
+
+
+/* ₪₪₪₪₪ ROOT & MAIN & DEFAULTS ₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪ {{{ */
+:root {
+  --color-dt:      rgba(0 , 128, 128, 1);
+  --color-bg:      rgba(0 , 128, 128, 1);
+  --color-main:    rgba(0, 1, 167, 1);
+  /* --color-main:    rgba(0, 0, 128, 1); */
+  --color-comp:    rgba(206, 121, 23, 1);
+  --color-action:  rgba(206, 121, 23, 1);
+  --color-accent:  rgba(0, 122, 204, 1);
+
+  --color-warning: rgba(206, 121, 23, 1);
+  --color-success: rgba(95, 137, 43, 1);
+  --color-error:   rgba(140, 40, 79, 1);
+  --color-info:    rgba(47, 82, 121, 1);
+
+  --black:   rgba(33, 35, 41, 1);
+  --white:   rgba(223, 223, 223, 1);
+  --color-dark:    rgba(128, 128, 128, 1);
+  --color-med:     rgba(192, 192, 192, 1);
+  --color-light:   rgba(223, 223, 223, 1);
+
+  --size-xs: 400px;
+  --size-sm: 600px;
+  --size-md: 800px;
+  --size-lg: 1100px;
+  --size-xl: 1600px;
+}
+
+@font-face {
+  font-family: "mainFont";
+  src: url(font/w95fa.woff) format(WOFF);
+}
+html, body { height: 100%; min-width:100%; }
+body {
+  max-height: 100%;
+  overflow-y: auto;
+  margin:0; padding:0;
+  color:var(--color-text);
+  font-family:'mainFont', Arial, sans-serif;
+  font-size: 16px;
+  /* keeps taskbar at bottom: */
+  display: flex;
+  flex-direction: column;
+}
+
+p, h1, h2, h3, h4, h5 {
+  margin: 1rem 2% inherit;
+}
+h1, h3 {
+  text-align: center;
+}
+/* ::::::::::> END ROOT & MAIN & DEFAULTS }}} <:::::::::: */
+
+
+/* ₪₪₪₪₪ MAIN DIVS AND BASIC NAV DIVS ₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪ {{{ */
+
+/* DESKTOP */
+.desktop { 
+  box-sizing: border-box;
+  background-color:var(--color-dt);
+  /* keeps taskbar at bottom: */
+  flex: 1 0 auto;
+}
+ul.icons {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: center;
+  max-height: 90vh;
+  position: absolute;
+}
+li.icon {
+  width: 6em;
+  height: 6em;
+  margin: 1em;
+}
+
+.icon img {
+  height: inherit;
+  width: inherit;
+}
+
+/* START/TASKBAR/NAVIGATION */
+
+/* Taskbar&Tray{{{ */
+.taskbar { 
+  box-sizing: border-box;
+  background-color: var(--color-med);
+  padding: 2px;
+  display: flex;
+  width: 100vw;
+  justify-content: space-between;
+  gap: 1em 3em;
+  align-items: center;
+}
+.tasks {
+  display: flex;
+  overflow: hidden;
+  flex:5;
+  flex-wrap: nowrap;
+  flex-flow: flex-start;
+  align-items: stretch;
+}
+.tasks > button {
+  margin: 0.5em 1em;
+  padding: 0.5em 1em;
+  flex: 0 1 220px;
+  border-left: 1px solid var(--white);
+  border-bottom: 1px solid var(--black);
+  border-right: 1px solid var(--black);
+  border-top: 1px solid var(--white);
+  background-color: var(--color-light);
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.tray {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  align-content: center;
+  gap: 0.5em;
+  border-left: 1px solid var(--black);
+  border-bottom: 1px solid var(--white);
+  border-right: 1px solid var(--white);
+  border-top: 1px solid var(--black);
+  padding: 0.2rem 1rem;
+}
+
+.tray img {
+  max-width: 28px;
+  height: auto;
+  position: relative;
+  top: 4px;
+}
+
+/* }}} */
+
+/* Start/Nav{{{ */
+nav {
+  margin: 0; padding: 0;
+  font-size: 115%;
+  box-sizing: border-box;
+}
+nav a {
+  color: var(--color-dark) !important;
+  text-decoration: none;
+  display: block;
+  padding: 1em 0.5em;
+}
+nav a:hover {
+  background-color: var(--color-main);
+  color: var(--color-light) !important;
+}
+.start-btn {
+  margin: 0.5em 1em 0.5em 0.1em;
+  padding: 0.5em;
+}
+.startmenu {
+  margin: 0 5px;
+}
+.startmenu-content {
+  display: none;
+  position: absolute;
+  bottom:50px;
+  background-color: var(--color-light);
+  min-width: 360px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+/* }}} */
+
+
+/* WINDOWS: */
+.window {
+  box-sizing: border-box;
+  position: absolute;
+  border: ridge 4px  var(--color-med);
+  resize: both;
+  overflow: auto;
+  min-height: 5em;
+  max-height: inherit;
+  background-color: var(--color-light);
+	z-index:5;
+  cursor: default;
+}
+.content {
+  box-sizing: border-box;
+  padding: 3% 2%;
+}
+
+.title-bar {
+  position: relative;
+  font-family: monospace;
+  font-size: 0.8em;
+  font-weight: bold;
+  background: linear-gradient(90deg,var(--color-main),var(--color-accent));
+  color: var(--white);
+  width: 100%;
+  cursor: move;
+  text-align: center;
+  line-height: 2em;
+  border-bottom: ridge 3px  var(--color-med);
+}
+.close_window {
+  background-color: var(--color-med);
+  color: var(--black);
+  height: 1.2em;
+  width: 1.2em;
+  line-height: 1.2em;
+  position: absolute;
+  top: .3em;
+  right: .3em;
+  cursor:pointer;
+}
+
+.project {
+  width: 540px;
+  top: 2vh;
+  left: 6%;
+}
+
+/* ::::::::::> END MAIN DIVS AND NAV }}} <:::::::::: */
+
+
+/* ₪₪₪₪₪ POSITIONING, DISPLAY, WORK-AROUNDS, & NICITIES ₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪ {{{ */
+a.external, .link { 
+  cursor:pointer;
+  display: inline-block;
+  text-decoration:underline;
+  text-decoration-color: var(--color-action);
+  color:var(--color-text);
+  font-style:italic;
+}
+.external:after { content: "\2924"; color:var(--color-action) }
+.kit { display: inline-block; } /* KeepItTogether */
+.scrollx { margin:0; padding: 0; overflow-x: auto; white-space: nowrap; }
+
+.pad-it { padding: 3%; box-sizing: border-box; }
+.mar-it { margin: 3%; box-sizing: border-box; }
+.mar-auto { margin: auto; }
+.mar-0 { margin: 0; }
+.pad-0 { padding: 0; }
+
+.h100 { height:100%; }
+.w100 { width:100%; }
+
+.vh100{ min-height: 100vh; }
+.vh50{ min-height: 50vh; }
+.vh30{ min-height: 30vh; }
+
+.center { text-align: center; }
+
+ul.whatitdo {
+  list-style-type: square;
+  line-height: 1.2em;
+}
+
+ul.whatitdo > li {
+  margin-top: .5em;
+}
+ul.sub {
+  list-style-type: circle;
+}
+
+iframe, img { max-height: 100%; max-width: 100%; }
+
+/* FLEXY CLASSES */
+/* {{{ */
+.flex { display: flex; }
+.wrap { flex-wrap: wrap; }
+.nowrap { flex-wrap: nowrap; }
+.row { display: flex; flex-direction: row; }
+.col { display: flex; flex-direction: column; }
+.justify-center { justify-content: center; }
+.align-center { align-items: center; }
+.space-between { justify-content: space-between; }
+.space-around { justify-content: space-around; }
+.space-evenly { justify-content: space-evenly; }
+.stretch {align-items: stretch; }
+.f0 { flex: 0 }
+.f1 { flex: 1 }
+.f2 { flex: 2 }
+.f3 { flex: 3 }
+.f4 { flex: 4 }
+.f5 { flex: 5 }
+/* }}} */
+
+/* forces div to be centered on page, but must be inside a flex container */
+.MIDDLE {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.clearfix {
+  width: 100%;
+  clear:both;
+}
+.clearfix:after { content: " "; display: block; height: 0; clear: both; visibility: hidden; }
+
+.hide{display:none !important}
+.show{display:block !important}
+/* ::::::::::> POSITIONING, DISPLAY, WORK-AROUNDS, & NICITIES }}} <:::::::::: */
+
+
+/* ₪₪₪₪₪ FORM & BUTTONS ₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪ {{{ */
+a.button {
+  box-sizing: border-box;
+  color: var(--color-dark);
+	border:none;
+  font-size: 1em;
+	cursor:pointer;
+	display: inline-flex;
+	text-decoration: none;
+	text-align:center;
+	border-radius: .65em/50%;
+	padding: .7em 1.2em;
+	filter: brightness(95%);
+	transition: all 0.65s ease;
+}
+a.button:hover {	filter: brightness(125%); transition: all 0.45s ease; }
+
+/* ::::::::::> END FORM & BUTTONS }}} <:::::::::: */
+
+
+/* ₪₪₪₪₪ Colours ₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪ {{{ */
+.warning {color:var(--color-warning)}
+
+/* ::::::::::> END Colours }}} <:::::::::: */
+
+
+/* ₪₪₪₪₪ RESPONSIVE STUFF ₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪ {{{ */
+@media all and (max-width:650px) {
+  .window{
+    width: 95% !important;
+    left: 50% !important;
+    transform: translate(-50%);
+  }
+
+  .tasks, .tray {
+    display: none;
+   }
+
+}
+/* ::::::::::> END RESPONSIVE STUFF }}} <:::::::::: */
+
